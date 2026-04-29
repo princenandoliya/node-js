@@ -22,5 +22,5 @@ server.listen(port, (err) => {
     if (err) {
         return console.log(err)
     }
-    console.log(`server runing port ${port}`)
+    console.log(`server runing port ${port}`);
 })
