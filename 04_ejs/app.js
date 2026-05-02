@@ -46,3 +46,35 @@ app.listen(port,(err)=>{
     }
     console.log("server is runing",port)
 })
+
+app.get("/edit/:id",(req,res)=>{
+    const id = Number(req.params.id)
+
+    const student = studentList.find((s)=> s.id === id)
+
+    if(!student){
+        return res.send("student not found")
+    }
+    res.render("edit",{student})
+})
+
+app.post("/update/:id",(req,res)=>{
+    const id = Number(req.params.id);
+    const {name} = req.body;
+
+    const student = studentList.find((s)=> s.id === id)
+
+    if(student){
+        student.name = name
+    }
+
+    res.redirect("/")
+})
+
+app.post("/delete/:id", (req, res) => {
+  const id = Number(req.params.id);
+  studentList = studentList.filter((s) => s.id !== id);
+
+  res.redirect("/");
+});
+
